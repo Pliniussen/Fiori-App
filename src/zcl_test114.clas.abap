@@ -12,34 +12,42 @@ ENDCLASS.
 
 
 
-CLASS zcl_test114 IMPLEMENTATION.
+CLASS ZCL_TEST114 IMPLEMENTATION.
 
 
   METHOD if_oo_adt_classrun~main.
 
-* Data Objects with Built-in Types
+
+* Declarations
 **********************************************************************
 
-    " comment/uncomment the following declarations and check the output
-*    DATA variable TYPE string.
-*    DATA variable TYPE i.
-*    DATA variable TYPE d.
-*    DATA variable TYPE c LENGTH 10.
-*    DATA variable TYPE n LENGTH 10.
-    DATA variable TYPE p LENGTH 8 DECIMALS 2.
+    " comment/uncomment these line for different result types
+*    TYPES t_result TYPE p LENGTH 8 DECIMALS 2.
+*    TYPES t_result TYPE p LENGTH 8 DECIMALS 0.
+    TYPES t_result TYPE i.
+
+    DATA result TYPE t_result.
+
+* Calculations
+**********************************************************************
+    " comment/uncomment these lines for different calculations
+
+*    result = 2 + 3.
+*    result = 2 - 3.
+*    result = 2 * 3.
+*    result = 2 / 3.
+*
+*    result = sqrt( 2 ).
+    result = ipow( base = 2 exp = 3 ).
+*
+*    result = ( 8 * 7 - 6 ) / ( 5 + 4 ).
+*   result = 8 * 7 - 6 / 5 + 4.
 
 * Output
 **********************************************************************
 
-    out->write(  'Result with Initial Value)' ).
-    out->write(   variable ).
-    out->write(  '---------' ).
+    out->write( result ).
 
-    variable = '19891109'.
-
-    out->write(  'Result with Value 19891109' ).
-    out->write(   variable ).
-    out->write(  '---------' ).
 
   ENDMETHOD.
 ENDCLASS.

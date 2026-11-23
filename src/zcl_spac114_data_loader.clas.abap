@@ -38,26 +38,16 @@ CLASS ZCL_SPAC114_DATA_LOADER IMPLEMENTATION.
   METHOD fill_table.
 *                                  ÆNDR TABELNAVNET
 *                                  vvvvvvvvvvvvvvvv
-    DATA: temp_table TYPE TABLE OF  zspac114_stock .
+    DATA: temp_table TYPE TABLE OF  zspac114_whse .
 *                                  ^^^^^^^^^^^^^^^^
 
     temp_table = VALUE #(
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 *   Ændr data herunder, når du vil fylde data på andre tabeller
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-      ( warehouse_id = 1 product_id = 1 amount =   3 )
-      ( warehouse_id = 3 product_id = 4 amount =  42 )
-      ( warehouse_id = 2 product_id = 5 amount =   1 )
-      ( warehouse_id = 3 product_id = 5 amount = 321 )
-      ( warehouse_id = 3 product_id = 1 amount =  20 )
-      ( warehouse_id = 1 product_id = 5 amount =   9 )
-      ( warehouse_id = 2 product_id = 3 amount =   5 )
-      ( warehouse_id = 3 product_id = 2 amount =   4 )
-      ( warehouse_id = 1 product_id = 4 amount =   0 )
-      ( warehouse_id = 3 product_id = 3 amount =   8 )
-      ( warehouse_id = 1 product_id = 3 amount = 100 )
-      ( warehouse_id = 1 product_id = 2 amount =   7 )
-      ( warehouse_id = 2 product_id = 4 amount =   0 )
+( warehouse_id = 1 street = 'Byggevej 14' city = 'Esbjerg' postal_code = '6700' warehouse_name = 'Harbour Logistics Hub' )
+( warehouse_id = 2 street = 'Computergade 66' city = 'Varde' postal_code = '6700' warehouse_name = 'Distribution Center' )
+( warehouse_id = 3 street = 'Gammelgade 100' city = 'Vejle' postal_code = '7100' warehouse_name = 'Central Warehouse' )
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 *   Ændr data herover, når du vil fylde data på andre tabeller
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -66,7 +56,7 @@ CLASS ZCL_SPAC114_DATA_LOADER IMPLEMENTATION.
     TRY.
 *            ÆNDR TABELNAVNET
 *            vvvvvvvvvvvvvvvv
-      INSERT  zspac114_stock  FROM TABLE @( CORRESPONDING #( temp_table ) ).
+      INSERT  zspac114_whse  FROM TABLE @( CORRESPONDING #( temp_table ) ).
 *            ^^^^^^^^^^^^^^^^
 
     CATCH cx_sy_open_sql_db INTO DATA(lx).
@@ -82,7 +72,7 @@ CLASS ZCL_SPAC114_DATA_LOADER IMPLEMENTATION.
 
 *               ÆNDR TABELNAVNET
 *               vvvvvvvvvvvvvvvv
-    DELETE FROM  zspac114_stock .
+    DELETE FROM  zspac114_whse .
 *               ^^^^^^^^^^^^^^^^
 
     IF sy-subrc <> 0.
